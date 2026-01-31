@@ -20,7 +20,7 @@ SHA="${SHA:-${GITHUB_SHA:-unknown}}"
 TS_MS="$(date +%s%3N)"
 
 # Normalize URL (remove trailing slash if present)
-GRAFANA_URL="${GRAFANA_URL%/}"
+URL="${URL%/}"
 
 payload="$(cat <<JSON
 {
