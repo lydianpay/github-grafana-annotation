@@ -44,4 +44,12 @@ resp="$(
     -d "${payload}"
 )"
 
-echo "Grafana response: ${resp}"
+id="$(echo "$resp" | jq -r '.id // empty')"
+msg="$(echo "$resp" | jq -r '.message // empty')"
+
+if [[ -n "$id" && "$msg" == "Annotation added" ]]; then
+  echo "Grafana Annotation Success"
+else
+  echo "Grafana Annotation Failed: $resp"
+  exit 1
+fi
